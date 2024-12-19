@@ -13,9 +13,9 @@ void helloGPU()
 
 int main()
 {
-
+  helloGPU<<<1,1>>>();
+  cudaDeviceSynchronize();
   helloCPU();
-
   helloGPU<<<1,1>>>();
   cudaDeviceSynchronize();
 }
