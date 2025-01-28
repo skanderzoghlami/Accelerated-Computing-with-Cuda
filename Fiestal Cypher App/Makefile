@@ -4,13 +4,19 @@ CXXFLAGS=-march=native -fopenmp
 NSYS=nsys profile
 NSYSFLAGS=--stats=true --force-overwrite=true
 
-all: baseline
+all: streams
 
-baseline: baseline.cu
-	$(CUDACXX) $(CUDACXXFLAGS) -Xcompiler="$(CXXFLAGS)" baseline.cu -o baseline
+streams: streams.cu
+	$(CUDACXX) $(CUDACXXFLAGS) -Xcompiler="$(CXXFLAGS)" streams.cu -o streams
 
-profile: baseline
-	$(NSYS) $(NSYSFLAGS) -o baseline-report ./baseline
+streams_solution: streams_solution.cu
+	$(CUDACXX) $(CUDACXXFLAGS) -Xcompiler="$(CXXFLAGS)" streams_solution.cu -o streams_solution
+
+profile: streams
+	$(NSYS) $(NSYSFLAGS) -o streams-report ./streams
+
+profile_solution: streams_solution
+	$(NSYS) $(NSYSFLAGS) -o streams-solution-report ./streams_solution
 
 clean:
-	rm -f baseline *.qdrep *.sqlite
+	rm -f streams streams_solution *.qdrep *.sqlite

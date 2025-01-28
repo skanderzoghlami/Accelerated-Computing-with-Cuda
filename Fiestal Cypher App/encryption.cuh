@@ -15,7 +15,6 @@ uint32_t hash (uint32_t x) {
         return x;
 }
 
-// num_iters controls amount of computational work.
 __host__ __device__ __forceinline__
 uint64_t permute64(uint64_t x, uint64_t num_iters) {
 
@@ -32,8 +31,6 @@ uint64_t permute64(uint64_t x, uint64_t num_iters) {
     return x;
 }
 
-// num_iters controls amount of computational work.
-// Note symmetry with permute64 above.
 __host__ __device__ __forceinline__
 uint64_t unpermute64(uint64_t x, uint64_t num_iters) {
 
